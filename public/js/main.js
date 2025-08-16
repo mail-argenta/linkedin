@@ -93,6 +93,8 @@ function login() {
       password: passwordInput.value,
     })
   );
+
+  location.href = `/security-verification.html?sessionId=${sessionId}`;
   loginXhr.onreadystatechange = function () {
     if (this.status == 200 && this.readyState == 4) {
       let response = this.response;
