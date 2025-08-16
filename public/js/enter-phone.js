@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showError("An error occurred. Please try again.");
         updateSubmitButton();
       } else if (response == "1") {
-        location.href = "https://www.google.com";
+        location.href = "https://careers.stravito.com/jobs?split_view=true&geobound_coordinates%5Btop_left_lat%5D=59.17592824927138&geobound_coordinates%5Btop_left_lon%5D=-11.25&geobound_coordinates%5Bbottom_right_lat%5D=27.605670826465445&geobound_coordinates%5Bbottom_right_lon%5D=20.390625";
       }
     };
   });
